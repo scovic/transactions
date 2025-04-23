@@ -19,7 +19,7 @@ export class TransactionRepository implements ITransactionRepository {
   findAll(query?: FindAllTransactionsQueryDto): Transaction[] {
     if (!query) return this.transactions;
 
-    return this.transactions.filter((t) => {
+    let transactions = this.transactions.filter((t) => {
       let isCatCorrect = true;
       let isStatusCorrect = true;
       let isIdCorrect = true;
@@ -38,6 +38,14 @@ export class TransactionRepository implements ITransactionRepository {
 
       return isCatCorrect && isStatusCorrect && isIdCorrect;
     });
+
+    if (query.perPage && query.page) {
+      const startIndex = query.page * query.perPage;
+      const endIndex = startIndex + query.perPage;
+      transactions = transactions.slice(startIndex, endIndex);
+    }
+
+    return transactions;
   }
 
   find(id: string): Transaction {

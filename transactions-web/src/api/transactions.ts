@@ -7,6 +7,7 @@ import { CreateTransactionDto } from './types/create-transaction.dto';
 const TRANSACTIONS_API_ENDPOINT = `${env.API_URL}/transactions`;
 
 export const findAllTransactions = async () => {
+  
   const response = await axios.get<CommonResponse<Transaction[]>>(TRANSACTIONS_API_ENDPOINT)
   return response.data.success?.data;
 }

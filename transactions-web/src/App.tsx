@@ -84,7 +84,6 @@ function App() {
     setSelectedTransaction(null);
   }
 
-
   const handleStatusFilterChange = (statusFilter: StatusFilterOption) => {
     setStatusFilter(statusFilter);
   }
