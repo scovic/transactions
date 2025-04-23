@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { FindAllTransactionsQueryDto } from './dto/find-all-transactions.query.dto';
 import { Transaction } from './entities/transaction.entity';
 import { randomUUID } from 'crypto';
+import { mockTransactions } from './mock-data';
 
 export interface ITransactionRepository {
   findAll(query?: FindAllTransactionsQueryDto): Transaction[];
@@ -13,7 +14,7 @@ export interface ITransactionRepository {
 
 @Injectable()
 export class TransactionRepository implements ITransactionRepository {
-  private transactions: Transaction[] = [];
+  private transactions: Transaction[] = [...mockTransactions];
 
   findAll(query?: FindAllTransactionsQueryDto): Transaction[] {
     if (!query) return this.transactions;

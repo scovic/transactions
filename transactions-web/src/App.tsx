@@ -6,8 +6,7 @@ import { Box, Button } from "@mui/material";
 import { CreateTransactionModal } from "./components/TransactionModal/CreateTransactionModal";
 import { DeleteTransactionDialog } from "./components/DeleteTransactionDialog/DeleteTransactionDialog";
 import { UpdateTransactionModal } from "./components/TransactionModal/UpdateTransactionModal";
-import { StatusFilter, StatusFilterOption } from "./components/Filters/StatusFilter";
-import { CategoryFilter } from "./components/Filters/CategoryFilter";
+import { StatusFilter, StatusFilterOption, CategoryFilter } from "./components/Filters";
 
 function App() {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);

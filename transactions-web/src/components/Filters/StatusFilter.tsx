@@ -1,13 +1,7 @@
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
-import { TransactionStatus } from "../../models/Transaction";
 import { useCallback } from "react";
 import { capitalize } from "../../utils/string";
-
-export enum StatusFilterOption {
-  ALL = 'all',
-  PENDING = TransactionStatus.PENDING,
-  COMPLETED = TransactionStatus.COMPLETED
-}
+import { StatusFilterOption } from "./types";
 
 type StatusFilterProps = {
   selectedFilterOption: StatusFilterOption;
