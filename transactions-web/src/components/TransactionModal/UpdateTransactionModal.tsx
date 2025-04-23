@@ -110,7 +110,7 @@ export function UpdateTransactionModal({
           onChange={onStatusChange}
         >
           <MenuItem value={TransactionStatus.PENDING}>
-          {capitalize(TransactionStatus.PENDING)}
+            {capitalize(TransactionStatus.PENDING)}
           </MenuItem>
           <MenuItem value={TransactionStatus.COMPLETED}>
             {capitalize(TransactionStatus.COMPLETED)}

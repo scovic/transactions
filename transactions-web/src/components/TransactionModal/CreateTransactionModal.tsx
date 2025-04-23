@@ -30,19 +30,29 @@ export function CreateTransactionModal({
     []
   )
 
+  const handleClose = useCallback(
+    () => {
+      setAmount('');
+      setCategory('');
+      onClose()
+    },
+    [onClose]
+  )
+
   const onSubmit = useCallback(
     () => {
       onCreate(+amount, category);
-      onClose();
+      handleClose();
+      
     },
-    [onCreate, onClose, amount, category]
+    [onCreate, handleClose, amount, category]
   )
 
   return (
     <TransactionModal
       title="Create transaction"
       isOpen={isOpen}
-      onClose={onClose}
+      onClose={handleClose}
       onSubmit={onSubmit}
     >
       <FormControl size="small" fullWidth  sx={{ mb: 2 }}>
