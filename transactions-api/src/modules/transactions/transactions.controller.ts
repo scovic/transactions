@@ -10,7 +10,7 @@ import {
   HttpStatus,
   Put,
 } from '@nestjs/common';
-import { TransactionsService } from './service/transactions.service';
+import { TransactionsService } from './transactions.service';
 import { CreateTransactionDto } from './dto/create-transaction.dto';
 import { UpdateTransactionDto } from './dto/update-transaction.dto';
 import { FindAllTransactionsQueryDto } from './dto/find-all-transactions.query.dto';

@@ -1,16 +1,20 @@
-import { Injectable } from '@nestjs/common';
-import { CreateTransactionDto } from '../dto/create-transaction.dto';
-import { UpdateTransactionDto } from '../dto/update-transaction.dto';
-import { TransactionRepository } from '../transactions.repository';
-import { TransactionStatus } from '../types/transaction-status.enum';
-import { FindAllTransactionsQueryDto } from '../dto/find-all-transactions.query.dto';
-import { DateFormatter } from '../utils/DateFormatter';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { CreateTransactionDto } from './dto/create-transaction.dto';
+import { UpdateTransactionDto } from './dto/update-transaction.dto';
+import { TransactionRepository } from './transactions.repository';
+import { TransactionStatus } from './types/transaction-status.enum';
+import { FindAllTransactionsQueryDto } from './dto/find-all-transactions.query.dto';
+import { DateFormatter } from './utils/DateFormatter';
 
 @Injectable()
 export class TransactionsService {
   constructor(private transactionRepository: TransactionRepository) {}
 
   public create(createTransactionDto: CreateTransactionDto) {
+    if (createTransactionDto.amount < 0) {
+      throw new BadRequestException('Amount should not be negative');
+    }
+
     const transaction = {
       ...createTransactionDto,
       status: TransactionStatus.PENDING,
@@ -20,7 +24,7 @@ export class TransactionsService {
     return this.transactionRepository.save(transaction);
   }
 
-  public findAll(query: FindAllTransactionsQueryDto) {
+  public findAll(query?: FindAllTransactionsQueryDto) {
     return this.transactionRepository.findAll(query);
   }
 
