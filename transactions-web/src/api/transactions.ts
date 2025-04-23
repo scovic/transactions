@@ -21,7 +21,7 @@ export const createTransaction = async (createTransactionDto: CreateTransactionD
 }
 
 export const updateTransaction = async (updatedTransaction: Transaction) => {
-  const response = await axios.patch<CommonResponse<Transaction>>(
+  const response = await axios.put<CommonResponse<Transaction>>(
     `${TRANSACTIONS_API_ENDPOINT}/${updatedTransaction.id}`,
     updatedTransaction
   )
