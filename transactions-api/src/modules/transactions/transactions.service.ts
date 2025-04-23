@@ -4,6 +4,7 @@ import { UpdateTransactionDto } from './dto/update-transaction.dto';
 import { TransactionRepository } from './transactions.repository';
 import { TransactionStatus } from './types/transaction-status.enum';
 import { FindAllTransactionsQueryDto } from './dto/find-all-transactions.query.dto';
+import { DateFormatter } from './utils/DateFormatter';
 
 @Injectable()
 export class TransactionsService {
@@ -13,7 +14,7 @@ export class TransactionsService {
     const transaction = {
       ...createTransactionDto,
       status: TransactionStatus.PENDING,
-      date: new Date().toISOString(),
+      date: DateFormatter.format(new Date()),
     };
 
     return this.transactionRepository.save(transaction);
