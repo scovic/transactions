@@ -22,7 +22,6 @@ export class TransactionRepository implements ITransactionRepository {
     let transactions = this.transactions.filter((t) => {
       let isCatCorrect = true;
       let isStatusCorrect = true;
-      let isIdCorrect = true;
 
       if (query.category) {
         isCatCorrect = query.category === t.category;
@@ -32,11 +31,7 @@ export class TransactionRepository implements ITransactionRepository {
         isStatusCorrect = query.status === t.status;
       }
 
-      if (query.id) {
-        isIdCorrect = query.id === t.id;
-      }
-
-      return isCatCorrect && isStatusCorrect && isIdCorrect;
+      return isCatCorrect && isStatusCorrect;
     });
 
     if (query.perPage && query.page) {
